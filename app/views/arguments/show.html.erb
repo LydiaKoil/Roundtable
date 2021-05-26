@@ -1,0 +1,20 @@
+
+
+<p>
+  <strong>Title:</strong>
+  <%= @argument.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @argument.body %>
+</p>
+
+
+<p>
+  <strong>User:</strong>
+  <%= @argument.user.email %>
+</p>
+
+<%= link_to 'Edit', edit_argument_path(@argument) %> |
+<%= link_to 'Back', arguments_path %>
