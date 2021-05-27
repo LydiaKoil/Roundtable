@@ -1,8 +1,11 @@
 class Argument < ApplicationRecord
-  enum type: [:pro, :con]
-  has_many :replies, class_name: "Argument",
-                          foreign_key: "claim_id"
+  enum reply_type: {
+    pro: 0,
+    con: 1
+  }
 
-  belongs_to :claim, class_name: "Argument", optional: true
+  has_many :arguments
+
+  belongs_to :argument, optional: true
   belongs_to :user
 end
