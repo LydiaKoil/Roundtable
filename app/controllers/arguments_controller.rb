@@ -22,8 +22,7 @@ class ArgumentsController < ApplicationController
 
   # POST /arguments or /arguments.json
   def create
-    @argument = Argument.new(argument_params)
-    @argument.user = current_user
+    @argument = current_user.arguments.new(argument_params)
     respond_to do |format|
       if @argument.save
         format.html { redirect_to @argument, notice: 'Argument was successfully created.' }
