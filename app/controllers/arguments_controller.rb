@@ -12,6 +12,7 @@ class ArgumentsController < ApplicationController
 
   # GET /arguments/new
   def new
+    @claim_id = @argument
     @argument = Argument.new
   end
 
@@ -23,7 +24,6 @@ class ArgumentsController < ApplicationController
   def create
     @argument = Argument.new(argument_params)
     @argument.user = current_user
-
     respond_to do |format|
       if @argument.save
         format.html { redirect_to @argument, notice: "Argument was successfully created." }
@@ -65,6 +65,6 @@ class ArgumentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def argument_params
-      params.require(:argument).permit(:title, :body)
+      params.require(:argument).permit(:title, :body,:claim_id)
     end
 end

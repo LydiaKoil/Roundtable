@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= form.hidden_field :claim_id, :value => params[:reply] %>
+
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
