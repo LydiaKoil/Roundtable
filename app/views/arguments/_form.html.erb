@@ -11,7 +11,8 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :claim_id, :value => params[:reply] %>
+  <%= form.hidden_field :argument_id %>
+  <%= form.hidden_field :reply_type %>
 
   <div class="field">
     <%= form.label :title %>
