@@ -1,6 +1,6 @@
 class ArgumentsController < ApplicationController
   before_action :set_argument, only: %i[show edit update destroy]
-
+  before_action :authenticate_user!, except: [:show, :index]
   # GET /arguments or /arguments.json
   def index
     @arguments = Argument.where(argument_id: nil)
