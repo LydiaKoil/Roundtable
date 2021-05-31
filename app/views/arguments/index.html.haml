@@ -13,8 +13,11 @@
         %td= argument.title
         %td= argument.body
         %td= argument.user_id
+
         %td= link_to 'Show', argument
-        %td= link_to 'Edit', edit_argument_path(argument)
-        %td= link_to 'Destroy', argument, method: :delete, data: { confirm: 'Are you sure?' }
+        - if policy(argument).edit?
+          %td= link_to 'Edit', edit_argument_path(argument)
+        - if policy(argument).destroy?
+          %td= link_to 'Destroy', argument, method: :delete, data: { confirm: 'Are you sure?' }
 %br/
 = link_to 'New Argument', new_argument_path

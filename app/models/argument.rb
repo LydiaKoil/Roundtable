@@ -4,7 +4,7 @@ class Argument < ApplicationRecord
     con: 1
   }
 
-  has_many :arguments
+  has_many :arguments, dependent: :destroy
 
   belongs_to :argument, optional: true
   belongs_to :user

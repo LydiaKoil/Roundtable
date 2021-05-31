@@ -1,6 +1,10 @@
 # Additional translations at https://github.com/heartcombo/devise/wiki/I18n
 
 en:
+  pundit:
+   default: 'You cannot perform this action.'
+   post_policy:
+     destroy?: 'You cannot destroy this post!'
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."

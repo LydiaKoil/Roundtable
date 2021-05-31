@@ -6,7 +6,7 @@
   = @argument.body
 %p
   %strong User:
-  = @argument.user.email
+  = @argument.user.email.split('@')[0]
 %p
   %strong Pros:
 %ul
@@ -17,10 +17,16 @@
 %ul
   - @argument.arguments.con.each do |argument|
     %li= link_to argument.title, argument
+
+
+
 = link_to 'Add Pro', new_argument_path(reply: @argument.id, reply_type: :pro)
 |
 = link_to 'Add Con', new_argument_path(reply: @argument.id, reply_type: :con)
 |
-= link_to 'Edit', edit_argument_path(@argument)
-|
+- if policy(@argument).edit?
+  %td= link_to 'Edit', edit_argument_path(@argument)
+  |
 = link_to 'Back', arguments_path
+
+=render 'nav'
