@@ -14,11 +14,15 @@ RSpec.describe Argument, :type => :model do
   )
 
 =end
+=begin
   let(:user) {
     User.new(:email => "jane@doe.com", :password => "pw1234",  :password_confirmation => "pw1234")
-    it { should belong_to(:argument) }
+    }
   }
-	
+
+=end
+  
+  user =FactoryBot.build(:user)
   subject { Argument.new(
     title:"Anything",
     body: "Anything",
