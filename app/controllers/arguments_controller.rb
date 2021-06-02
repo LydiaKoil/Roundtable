@@ -1,16 +1,22 @@
 class ArgumentsController < ApplicationController
   before_action :set_argument, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: [:show, :index]
+  after_action :verify_authorized
+  
   # GET /arguments or /arguments.json
   def index
+  	authorize Argument
     @arguments = Argument.where(argument_id: nil)
   end
 
   # GET /arguments/1 or /arguments/1.json
-  def show; end
+  def show
+  	authorize @argument
+  end
 
   # GET /arguments/new
   def new
+  	authorize Argument
     @argument = Argument.new(
       argument_id: params[:reply],
       reply_type: params[:reply_type]
@@ -24,6 +30,7 @@ class ArgumentsController < ApplicationController
 
   # POST /arguments or /arguments.json
   def create
+  	authorize Argument
     @argument = current_user.arguments.new(argument_params)
     respond_to do |format|
       if @argument.save

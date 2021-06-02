@@ -1,7 +1,22 @@
 class ArgumentPolicy < ApplicationPolicy
+	def index?
+    	true
+  	end
+
+  	def show?
+    	true
+  	end
+
+  	def create?
+    	true
+  	end
+
+  	def new?
+    	create?
+  	end
 
 	def edit?
-		user == record.user
+		update?
 	end
 
 	def update?
