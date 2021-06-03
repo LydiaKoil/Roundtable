@@ -9,10 +9,8 @@
   %tbody
     - @arguments.each do |argument|
       %tr
-        %td= argument.title
+        %td= link_to argument.title, argument
         %td= argument.user.email.split('@')[0]
-
-        %td= link_to 'Show', argument
         - if policy(argument).edit?
           %td= link_to 'Edit', edit_argument_path(argument)
         - if policy(argument).destroy?
