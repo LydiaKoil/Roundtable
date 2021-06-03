@@ -2,7 +2,7 @@
 
 - if current_user
   
-  = "#{current_user.email.split('@')[0]} is logged in"
+  = "#{current_user.first_name}"
   %p
   = link_to 'Sign out', destroy_user_session_path, method: :delete
   %p
