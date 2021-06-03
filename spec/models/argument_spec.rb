@@ -22,7 +22,8 @@ RSpec.describe Argument, :type => :model do
 
 =end
   
-  user =FactoryBot.build(:user)
+  user =FactoryBot.create(:user)
+  print user.last_name
   subject { Argument.new(
     title:"Anything",
     body: "Anything",
