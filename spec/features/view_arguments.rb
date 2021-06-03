@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Viewing Arguments', type: :feature   do 
+describe 'a user viewing arguments', type: :feature   do 
   before :each do
     @argument_1 = argument_with_pros_cons
   end

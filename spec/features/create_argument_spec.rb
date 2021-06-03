@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Creating Arguments', type: :feature   do 
+describe 'the user creating arguments', type: :feature   do 
   before :each do
 
     @user =FactoryBot.create(:user)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'the signin_process', type: :feature do
+describe 'the user signing in', type: :feature do
 
   before(:each) do
   	@user =FactoryBot.create(:user)

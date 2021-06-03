@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'the sign up process', type: :feature do
+describe 'a user signing up', type: :feature do
   before :each do
     visit 'users/sign_up'
   end
