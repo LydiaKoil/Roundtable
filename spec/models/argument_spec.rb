@@ -49,8 +49,6 @@ RSpec.describe Argument, :type => :model do
 
   describe "Associations" do
   it { should belong_to(:user).without_validating_presence }
-  
-
   end
   
 

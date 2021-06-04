@@ -30,8 +30,6 @@ describe 'the user creating arguments', type: :feature   do
   
     click_on ('Arguments')
     click_on('New Argument')
-    
-    #expect(current_path).to eq("/arguments/#{Argument.last.id}")
     expect(page).to have_content ("You need to sign in or sign up before continuing.") 
   end
 

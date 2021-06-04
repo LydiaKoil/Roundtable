@@ -6,27 +6,29 @@ describe 'a user viewing arguments', type: :feature   do
   end
 
   it "displays index of arguments" do
-    #@argument_1 =FactoryBot.create(:argument)
+
   	visit arguments_path
   	expect(page).to have_content @argument_1.title
-    expect(page).to have_content @argument_1.user.email.split('@')[0]
+    expect(page).to have_content @argument_1.user.full_name
 
   end
 
   it "displays individual argument" do
-    #@argument_1 =FactoryBot.create(:argument)
+
     visit arguments_path
     click_link @argument_1.title
     expect(current_path).to eq("/arguments/#{@argument_1.id}")
     expect(page).to have_content @argument_1.title
     expect(page).to have_content @argument_1.body
-    expect(page).to have_content @argument_1.user.email.split('@')[0]
+    expect(page).to have_content @argument_1.user.full_name
     @argument_1.arguments.pro.each do |arg|
       expect(page).to have_content arg.title
     end
     @argument_1.arguments.con.each do |arg|
       expect(page).to have_content arg.title
-    end
+  end
+
+
       
   end
   

@@ -10,29 +10,6 @@ FactoryBot.define do
     user
 
   end
-=begin
-    factory :pro, class: Argument do
-
-      title{ Faker::Quote.robin }
-      body { Faker::Quote.robin}
-      created_at {DateTime.now}
-      reply_type {0}
-      association :argument
-      association :user
-
-    end
-
-     factory :con, class: Argument do
-
-      title{ Faker::Quote.robin }
-      body { Faker::Quote.robin}
-      created_at {DateTime.now}
-      reply_type {1}
-      association :argument
-      association :user
-
-    end
-=end
 end
 
 def argument_with_pros_cons(arguments_count:2)
@@ -42,8 +19,21 @@ def argument_with_pros_cons(arguments_count:2)
 	  end
   end
 
-def user_with_arguments(arg_count: 1)
-  FactoryBot.create(:user) do |user|
-    FactoryBot.create_list(:argument, arg_count, user: user)
-  end
-end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
