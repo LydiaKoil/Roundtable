@@ -9,5 +9,5 @@ class Argument < ApplicationRecord
   belongs_to :argument, optional: true
   belongs_to :user
   validates_presence_of :title
-
+  
 end
