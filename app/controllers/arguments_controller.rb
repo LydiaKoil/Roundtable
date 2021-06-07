@@ -34,8 +34,13 @@ class ArgumentsController < ApplicationController
     @argument = current_user.arguments.new(argument_params)
     respond_to do |format|
       if @argument.save
+        if !@argument.argument_id.nil?
+          @original = Argument.find(@argument.argument_id)
+          UserMailer.welcome_email(@original.user.id).deliver_later
+        end
         format.html { redirect_to @argument, notice: 'Argument was successfully created.' }
         format.json { render :show, status: :created, location: @argument }
+        
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @argument.errors, status: :unprocessable_entity }
