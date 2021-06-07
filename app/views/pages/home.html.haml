@@ -1,8 +1,23 @@
-%h1 The Round Table
-- if current_user
-  = link_to 'Sign out', destroy_user_session_path, method: :delete
-  = link_to 'New Argument', new_argument_path
-- else
-  = link_to 'Sign in', new_user_session_path
-  = link_to 'Sign up', new_user_registration_path
-= link_to 'Arguments', arguments_path
+
+#navbarToggleExternalContent.collapse
+  .bg-dark.p-4
+    %h5.text-white.h4 Collapsed content
+    %span.text-muted Toggleable via the navbar brand.
+%nav.navbar.navbar-dark.bg-dark
+  .container-fluid
+    %button.navbar-toggler{"aria-controls" => "navbarToggleExternalContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarToggleExternalContent", "data-bs-toggle" => "collapse", type: "button"}
+      %span.navbar-toggler-icon
+%main
+  %section.py-5.text-center.container
+    .row.py-lg-5
+      .col-lg-6.col-md-8.mx-auto
+        %h1 The Round Table
+        - if current_user
+          = link_to 'Sign out', destroy_user_session_path, method: :delete
+          = link_to 'New Argument', new_argument_path
+        - else
+          %a.btn.btn-primary.my-2{href: new_user_session_path} Sign in 
+          %a.btn.btn-primary.my-2{href: new_user_registration_path} Sign up
+          %a.btn.btn-primary.my-2{href: arguments_path} Arguments 
+       
+        
