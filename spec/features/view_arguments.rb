@@ -31,15 +31,4 @@ describe 'a user viewing arguments', type: :feature   do
 
       
   end
-  
-
-=begin
-  it "displays argument when show clicked" do
-	user =FactoryBot.build(:user)
-
-  	visit arguments_path
-  	expect(page).to have_content argument_1.title
-    expect(page).to have_content argument_2.title
-  end
-=end
 end

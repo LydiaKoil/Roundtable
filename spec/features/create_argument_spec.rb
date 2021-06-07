@@ -33,19 +33,5 @@ describe 'the user creating arguments', type: :feature   do
     expect(page).to have_content ("You need to sign in or sign up before continuing.") 
   end
 
-
-
-=begin
-  it "displays index when logged in" do
-	user =FactoryBot.build(:user)
-	print user.last_name
-	argument_1 =FactoryBot.build(:argument)
-	print argument_1.title
-	argument_2 =FactoryBot.build(:argument)
-  	visit arguments_path
-  	expect(page).to have_content argument_1.title
-    expect(page).to have_content argument_2.title
-  end
-=end
 end
 

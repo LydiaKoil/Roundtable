@@ -6,6 +6,14 @@ require "active_support/core_ext/integer/time"
 # and recreated between test runs. Don't rely on the data there!
 
 Rails.application.configure do
+
+  config.active_job.queue_adapter = :test
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.raise_delivery_errors = true
+
+ 
   # Settings specified here will take precedence over those in config/application.rb.
   config.hosts << "www.example.com"
   config.cache_classes = false
