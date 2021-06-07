@@ -4,23 +4,6 @@ require 'rails_helper'
 
 
 RSpec.describe Argument, :type => :model do
-=begin
-  user = User.create(
-  first_name: 'Jane',
-  last_name: 'Doe',
-  email: 'test@example.com', 
-  password: 'password123',
-  password_confirmation: 'password123'
-  )
-
-=end
-=begin
-  let(:user) {
-    User.new(:email => "jane@doe.com", :password => "pw1234",  :password_confirmation => "pw1234")
-    }
-  }
-
-=end
   
   user =FactoryBot.create(:user)
   print user.last_name
@@ -50,8 +33,7 @@ RSpec.describe Argument, :type => :model do
   describe "Associations" do
   it { should belong_to(:user).without_validating_presence }
   end
+
   
-
-
 
 end 

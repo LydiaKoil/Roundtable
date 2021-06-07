@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   first_name: 'Jane',
   last_name: 'Doe',
   email: 'test1@example.com', 
-  password: 'password123',
+  password: 'password123', 
   password_confirmation: 'password123')
   }
   
@@ -26,6 +26,6 @@ RSpec.describe User, type: :model do
   end
 
   
-  
+
 
 end
