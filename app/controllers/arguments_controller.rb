@@ -32,14 +32,11 @@ class ArgumentsController < ApplicationController
   def create
   	authorize Argument
     @argument = current_user.arguments.new(argument_params)
-    respond_to do |format|
-      if @argument.save
-        format.html { redirect_to @argument, notice: 'Argument was successfully created.' }
-        format.json { render :show, status: :created, location: @argument }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @argument.errors, status: :unprocessable_entity }
-      end
+
+    if @argument.save
+      redirect_to @argument, notice: 'Argument was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
