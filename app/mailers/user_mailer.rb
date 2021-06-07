@@ -1,9 +1,9 @@
 class UserMailer < ApplicationMailer
-	def welcome_email(user_id)
+	def reply_email(user_id)
 	    @user = User.find(user_id)
 
 	    mail(   :to      => @user.email,
-	            :subject => "Welcome"
+	            :subject => "You've gotten a response!"
 	    ) do |format|
 	      format.text
 	      format.html
