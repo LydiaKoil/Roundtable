@@ -36,7 +36,7 @@ class ArgumentsController < ApplicationController
       if @argument.save
         if !@argument.argument_id.nil?
           @original = Argument.find(@argument.argument_id)
-          UserMailer.welcome_email(@original.user.id).deliver_later
+          UserMailer.reply_email(@original.user.id).deliver_later
         end
         format.html { redirect_to @argument, notice: 'Argument was successfully created.' }
         format.json { render :show, status: :created, location: @argument }
