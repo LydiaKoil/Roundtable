@@ -10,4 +10,12 @@ class Argument < ApplicationRecord
   belongs_to :user
   validates_presence_of :title
 
+  def send_reply_notification!
+  	return if self.argument_id.nil?
+ 
+	original = Argument.find(self.argument_id)
+    UserMailer.reply_email(original.user.id).deliver_later
+
+  end
+
 end
