@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'the user deleting arguments', type: :feature   do 
+describe 'the user deleting arguments', type: :feature , :js => true do 
 
   before(:each) do
     @user = user_with_arguments
@@ -17,9 +17,10 @@ describe 'the user deleting arguments', type: :feature   do
     click_on('Arguments')
 
     expect(current_path).to eq(arguments_path)
-    accept_confirm do
+    accept_confirm("Are you sure?")do
       click_link('Destroy')
     end
+    expect(page).to have_content ("Argument was successfully destroyed") 
         
   end
   
