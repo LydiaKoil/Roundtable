@@ -16,7 +16,6 @@ Rails.application.configure do
  
   # Settings specified here will take precedence over those in config/application.rb.
   config.hosts << "www.example.com"
-  config.hosts << "127.0.0.1"
   config.cache_classes = false
   config.action_view.cache_template_loading = true
 
