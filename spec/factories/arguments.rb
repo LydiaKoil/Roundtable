@@ -1,14 +1,12 @@
 FactoryBot.define do
 
   factory :argument, class: Argument do
-
     title{ Faker::Quote.robin }
     body { Faker::Quote.robin}
     created_at {DateTime.now}
     reply_type {nil}
     argument_id {nil}
     user
-
   end
 end
 

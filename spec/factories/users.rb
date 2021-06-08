@@ -10,7 +10,6 @@
 
 end
 
-
 def user_with_arguments(arg_count: 1)
   FactoryBot.create(:user) do |user|
     FactoryBot.create_list(:argument, arg_count, user: user)

@@ -2,15 +2,24 @@ require 'rails_helper'
 
 describe 'the User', type: :feature do
 
-  before(:each) do
+  before do
   	@user =FactoryBot.create(:user)
   end
 
-
   describe 'signs in' do
+    before do
+      visit '/users/sign_in'
+    end
+
+    shared_examples 'throws an error' do
+      it 'shows invalid details error' do
+        expect(current_path).to eq(new_user_session_path)
+        expect(page).to have_text('Invalid Email or password')
+      end
+    end
+
     context 'with correct details ' do
       before do
-        visit '/users/sign_in'
         fill_in 'Email', with: @user.email
         fill_in 'Password', with: @user.password
         click_button ('Log in')
@@ -25,40 +34,35 @@ describe 'the User', type: :feature do
 
     context 'with incorrect password' do
       before do
-        visit '/users/sign_in'
         fill_in 'Email', with: @user.email
         fill_in 'Password', with: '123'
         click_button 'Log in'
       end
 
-      it 'throws an error' do
-        expect(current_path).to eq(new_user_session_path)
-        expect(page).to have_text('Invalid Email or password')
-      end
-
+      include_examples 'throws an error'
     end
 
     context 'with incorrect email' do
       before do
-        visit '/users/sign_in'
         fill_in 'Email', with: 'wrong@'
         fill_in 'Password', with: 'pass'
         click_button 'Log in'
       end
 
-      it 'throws an error' do
-        expect(current_path).to eq(new_user_session_path)
-        expect(page).to have_text('Invalid Email or password')
-      end
-
+      include_examples 'throws an error'
     end
   end
-
-
 
   describe 'signs up' do
     before do
       visit 'users/sign_up'
+    end
+
+    shared_examples 'doesnt create account' do
+      it 'doesnt create new account' do
+        expect{click_button 'Sign up'}.to change(User, :count).by(0)
+        expect(current_path).to eq(user_registration_path)
+      end
     end
 
     context 'with all correct details' do
@@ -85,12 +89,9 @@ describe 'the User', type: :feature do
         click_button 'Sign up'
       end
 
-      it 'doesnt create account' do
-        expect{click_button 'Sign up'}.to change(User, :count).by(0)
-        expect(current_path).to eq(user_registration_path)
-      end
+      include_examples 'doesnt create account'
 
-      it 'throws an error' do
+      it 'throws blank error' do
         expect(page).to have_text("First name can't be blank")
         expect(page).to have_text("Last name can't be blank")
       end
@@ -105,15 +106,12 @@ describe 'the User', type: :feature do
         fill_in 'Password', with: 'password'
         fill_in 'Password confirmation', with: 'pass'
       end
-      it 'doesnt create account' do
-        expect{ click_button 'Sign up'}.to change(User, :count).by(0)
-        expect(current_path).to eq(user_registration_path)
-      end
+
+      include_examples 'doesnt create account'
     end
 
     context 'with invalid password' do
       before do
-
         fill_in 'First name',  with: 'Lydia'
         fill_in 'Last name',  with: 'Tk'
         fill_in 'Email', with: 'lydia@gmail.com'
@@ -121,10 +119,7 @@ describe 'the User', type: :feature do
         fill_in 'Password confirmation', with: 'pass'
       end
 
-      it 'doesnt create account' do
-        expect{ click_button 'Sign up'}.to change(User, :count).by(0)
-        expect(current_path).to eq(user_registration_path)
-      end
+      include_examples 'doesnt create account'
     end
 
     context 'with password confirmation mismatch' do
@@ -136,12 +131,7 @@ describe 'the User', type: :feature do
         fill_in 'Password confirmation', with: 'random'
       end
 
-      it 'doesnt create account' do
-        expect{click_button 'Sign up'}.to change(User, :count).by(0)
-        expect(current_path).to eq(user_registration_path)
-      end
+      include_examples 'doesnt create account'
     end
-  
-
   end
 end
