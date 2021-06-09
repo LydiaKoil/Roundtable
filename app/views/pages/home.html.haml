@@ -21,7 +21,7 @@
 
 %html
   %head
-    %title Analysis
+    %title Home Page
     %link{:href => "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "https://fonts.googleapis.com/css?family=Inter", :rel => "stylesheet"}/
     %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", :rel => "stylesheet"}/   
@@ -43,7 +43,7 @@
           .container
             - if current_user
               = link_to 'Sign out', destroy_user_session_path, method: :delete
-              = link_to 'New Argument', new_argument_path
+              %a.btn.btn-dark.float-right.my-2{href: destroy_user_session_path, method: :delete}Sign out 
             - else
               %a.btn.btn-dark.float-right.my-2{href: new_user_session_path} Sign in 
               %a.btn.btn-dark.float-right.my-2.mr-2{href: new_user_registration_path} Sign up

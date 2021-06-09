@@ -1,7 +1,11 @@
 // Just a quick ugly style to see if our CSS works  
 h1 {  
   text-decoration: underline;  
-}  
+} 
+
+a:link {
+	color: black;
+}
 
 // Import Bootstrap v5  
 @import "~bootstrap/scss/bootstrap";  

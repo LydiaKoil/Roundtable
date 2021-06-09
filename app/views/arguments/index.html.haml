@@ -1,21 +1,66 @@
-%p#notice= notice
-%h1 Arguments
-%table
-  %thead
-    %tr
-      %th Title
-      %th User
-      %th{:colspan => "3"}
-  %tbody
-    - @arguments.each do |argument|
-      %tr
-        %td= link_to argument.title, argument
-        %td= argument.user.full_name
-        - if policy(argument).edit?
-          %td= link_to 'Edit', edit_argument_path(argument)
-        - if policy(argument).destroy?
-          %td= link_to 'Destroy', argument, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Argument', new_argument_path
+/ %h1 Arguments
+/ %table
+/   %thead
+/     %tr
+/       %th Title
+/       %th User
+/       %th{:colspan => "3"}
+/   %tbody
+/     - @arguments.each do |argument|
+/       %tr
+/         %td= link_to argument.title, argument
+/         %td= argument.user.full_name
+/         - if policy(argument).edit?
+/           %td= link_to 'Edit', edit_argument_path(argument)
+/         - if policy(argument).destroy?
+/           %td= link_to 'Destroy', argument, method: :delete, data: { confirm: 'Are you sure?' }
+/ %br/
+/ = link_to 'New Argument', new_argument_path
 
-=render 'nav'
+
+
+
+%html
+  %head
+    %title Arguments index
+    %link{:href => "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Inter", :rel => "stylesheet"}/
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", :rel => "stylesheet"}/   
+
+%body{:style => "height: 100vh; background-color: white;"}
+  .container.h-100.text-black.p-15
+    .row.h-100
+      .col-9
+        .row
+          .container
+            %h2{:style => "font-size: 50px"}
+              Discussions
+            %a.btn.btn-outline-dark.w-5{href: new_argument_path} New Argument
+
+
+        .row 
+          .list-group.list-group-flush
+            - @arguments.each do |argument|
+              %a.list-group-item.list-group-item-action.flex-column.align-items-start.p-10{href: "/arguments/#{argument.id}"}
+                .d-flex.w-100.justify-content-between
+                  %h5.mb-1 #{argument.title}
+                  %small #{argument.user.full_name}
+                  %p.mb-5 id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+                  - if policy(argument).edit?
+                    %a{href: edit_argument_path(argument)}Edit
+                  - if policy(argument).edit?
+                    = link_to ' Destroy', argument, method: :delete, data: { confirm: 'Are you sure?' }
+          
+          - @arguments.each do |argument|
+            .list-group.list-group-flush.p-15
+              .list-group-item.list-group-item-action.flex-column.align-items-start
+                .d-flex.w-100
+                  %a{href: "/arguments/#{argument.id}"} #{argument.title}    
+                %p.mb-5 id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+                - if policy(argument).edit?
+                  %a{href: edit_argument_path(argument)}Edit 
+                - if policy(argument).edit?
+                  = link_to 'Destroy', argument, method: :delete, data: { confirm: 'Are you sure?' }
+      .col-3{:style => "background-color: white"}
+
+=render 'nav'    

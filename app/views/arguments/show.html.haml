@@ -30,3 +30,20 @@
 = link_to 'Back', arguments_path
 
 =render 'nav'
+
+
+
+%html
+  %head
+    %title Arguments index
+    %link{:href => "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Inter", :rel => "stylesheet"}/
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", :rel => "stylesheet"}/   
+
+%body{:style => "height: 100vh; background-color: white;"}
+  .container.h-100.text-black.p-15
+    .row.h-100
+      .col
+        .row
+          %h2{:style => "font-size: 50px"}
+            #{@argument.title}
