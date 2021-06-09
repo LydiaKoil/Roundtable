@@ -36,15 +36,23 @@
               Challenge your perceptions.
             %h5.animate__animated.animate__fadeInUp
               Grab a seat.
-            %a.btn.btn-primary.my-2{href: arguments_path} Arguments 
+            %a.btn.btn-dark.my-2{href: arguments_path} Arguments 
               
       .col-6{:style => "background-color: black"}
         .row.h-50.no-gutter
+          .container
+            - if current_user
+              = link_to 'Sign out', destroy_user_session_path, method: :delete
+              = link_to 'New Argument', new_argument_path
+            - else
+              %a.btn.btn-dark.float-right.my-2{href: new_user_session_path} Sign in 
+              %a.btn.btn-dark.float-right.my-2.mr-2{href: new_user_registration_path} Sign up
         .row.h-30.no-gutter
         .row.align-self-center.justify-content-center
           / %span.center{:style => "height: 100px; width: 100px; background-color: white; border-radius: 50%; display: inline-block;"}
-          .container.align-items-center
-            
+          .container.align-items-center            
             %h5.animate__animated.animate__fadeIn
               .d-flex.justify-content-center.text-center{:style => "font-size: 50px; color: white"} THE ROUND TABLE
-      
+              
+
+            
