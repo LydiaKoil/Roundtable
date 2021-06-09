@@ -42,7 +42,7 @@
           .list-group.list-group-flush
             - @arguments.each do |argument|
               %a.list-group-item.list-group-item-action.flex-column.align-items-start.p-10{href: "/arguments/#{argument.id}"}
-                .d-flex.w-100.justify-content-between
+                .d-flex.w-100.justify-content-between  
                   %h5.mb-1 #{argument.title}
                   %small #{argument.user.full_name}
                   %p.mb-5 id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
