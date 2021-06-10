@@ -1,0 +1,76 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
+# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
+
+name: Ruby
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+
+jobs:
+  rspec-test:
+
+    runs-on: macos-latest
+    
+    services:
+      postgres:
+        image: postgres:12
+        ports: ["5432:5432"]
+        env:
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready 
+          --health-interval 10s 
+          --health-timeout 5s 
+          --health-retries 5
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
+    # change this to (see https://github.com/ruby/setup-ruby#versioning):
+    # uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
+      with:
+        ruby-version: '3.0'
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+        
+    - uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: install # will run `yarn install` command
+        
+        
+    - name: Install PostgreSQL 12 client
+      run: |
+        sudo apt-get -yqq install libpq-dev
+        
+    - name: Run Tests
+      env:
+        PG_DATABASE: postgres
+        PG_HOST: localhost
+        RAILS_ENV: test
+        WITH_COVERAGE: true
+        DISABLE_SPRING: 1
+      run: |
+        bundle exec db:prepare
+        bundle exec rake test
+        
+    - name: Upload Code Coverage
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-coverage
+        path: coverage/
+        
+    - name: Formatting and Security Checks
+      run: |
+        bundle exec rubocop
+        bundle exec brakeman -z
+        gem install bundle-audit
+        bundle-audit update
+        bundle-audit
