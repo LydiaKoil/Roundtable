@@ -48,7 +48,7 @@ jobs:
         
     - name: Run Tests
       env:
-        PG_DATABASE: postgres
+        PG_DATABASE: my_database_test
         PG_HOST: localhost
         RAILS_ENV: test
         WITH_COVERAGE: true
