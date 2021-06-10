@@ -1,11 +1,38 @@
 require 'rails_helper'
 
-describe 'An Argument', type: :feature  do 
+describe 'An Argument', type: :feature  do
+  
 
 	before do
 	    @user = user_with_arguments
 	    visit root_path
+  end
+
+  def sign_in 
+    click_on 'Sign in'
+    fill_in 'Email', with: @user.email
+    fill_in 'Password', with: @user.password
+    click_button ('Log in')
+    
   end 
+
+  describe "index" do
+    before do
+      visit arguments_path
+    end
+    
+    it "shows argument titles" do 
+      @user.arguments.each do |argument|
+        expect(page).to have_content argument.title
+        
+      end 
+    end
+    it "shows argument authors" do 
+      @user.arguments.each do |argument|
+        expect(page).to have_content argument.user.full_name
+      end 
+    end
+  end
 
   describe "show" do
     before do
@@ -14,14 +41,22 @@ describe 'An Argument', type: :feature  do
       click_link @argument.title
     end
     
-    it "shows individual argument" do  
+    it "shows argument title" do  
       expect(current_path).to eq("/arguments/#{@argument.id}")
       expect(page).to have_content @argument.title
+    end
+
+    it "shows argument body" do  
       expect(page).to have_content @argument.body
-      expect(page).to have_content @argument.user.full_name
+    end
+
+    it "shows argument pros" do  
       @argument.arguments.pro.each do |arg|
         expect(page).to have_content arg.title
       end
+    end
+
+    it "shows argument cons" do  
       @argument.arguments.con.each do |arg|
         expect(page).to have_content arg.title
       end
@@ -31,10 +66,7 @@ describe 'An Argument', type: :feature  do
   describe "new" do 
     context "when logged in" do
       before do
-        click_on 'Sign in'
-        fill_in 'Email', with: @user.email
-        fill_in 'Password', with: @user.password
-        click_button ('Log in')
+        sign_in
         click_on('New Argument')
       end
 
@@ -60,23 +92,18 @@ describe 'An Argument', type: :feature  do
 
 	describe "create" do
     before do
-      click_on 'Sign in'
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button ('Log in')
-      click_on('New Argument')
-      
+      sign_in
+      click_on('New Argument')  
     end
 
 		context "when full details are provided" do
       before do
         fill_in 'Title', with: "Something"
         fill_in 'Body', with: "Something"
-        click_on('Create Argument')
       end
-	    it "creates a new argument" do			    
+	    it "creates a new argument" do
+        expect{click_button 'Create Argument'}.to change(Argument, :count).by(1)   
 		    expect(current_path).to eq("/arguments/#{Argument.last.id}")
-		    expect(page).to have_content ("Argument was successfully created")
 	    end
 		end
 
@@ -84,10 +111,10 @@ describe 'An Argument', type: :feature  do
       before do
         fill_in 'Title', with: nil
         fill_in 'Body', with: "Something"
-        click_on('Create Argument')
       end
 
 			it "does not allow argument creation" do
+        expect{click_button 'Create Argument'}.to change(Argument, :count).by(0)   
     		expect(page).to have_content ("Title can't be blank") 
 	   	end
 		end
@@ -103,12 +130,8 @@ describe 'An Argument', type: :feature  do
 
 		context "when author logged in" do
 			before do
-	      click_on 'Sign in'
-		    fill_in 'Email', with: @user.email
-		    fill_in 'Password', with: @user.password
-		    click_button ('Log in')
-		    click_on('Arguments')
-		      
+	      sign_in
+		    click_on('Arguments')	      
 	  	end
 
       it "displays edit button" do
@@ -140,10 +163,7 @@ describe 'An Argument', type: :feature  do
 
   describe "update" do
     before do
-      click_on 'Sign in'
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button ('Log in')
+      sign_in
       click_on('Arguments')
       click_on('Edit')
     end
@@ -173,33 +193,31 @@ describe 'An Argument', type: :feature  do
     end
 
   end
-	describe "delete",  :js => true do
 
-    shared_examples 'doesnt show delete functionality' do
-     it 'shows no delet button' do
+	describe "destroy",  :js => true do
+
+    shared_examples 'doesnt show destroy functionality' do
+     it 'shows no destroy button' do
         click_on ('Arguments')
-        expect(page).to_not have_content ("Delete")
+        expect(page).to_not have_content ("Destroy")
      end
     end
 
     context "when logged in" do
       before do
-        click_on 'Sign in'
-        fill_in 'Email', with: @user.email
-        fill_in 'Password', with: @user.password
-        click_button ('Log in')
+        sign_in
         click_on('Arguments')
-        click_link('Destroy')
-        accept_confirm("Are you sure?")   
+        click_link('Destroy')       
       end
 
       it "deletes argument" do
         expect(page).to have_content ("Argument was successfully destroyed")
+
       end
     end
     
     context "when logged out" do
-      include_examples 'doesnt show delete functionality'
+      include_examples 'doesnt show destroy functionality'
     end
 
     context "when non-author logged in" do
@@ -211,9 +229,7 @@ describe 'An Argument', type: :feature  do
         click_button ('Log in')
       end
 
-      include_examples 'doesnt show delete functionality'
+      include_examples 'doesnt show destroy functionality'
     end 
-
-
   end
 end
