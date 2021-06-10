@@ -16,7 +16,9 @@
 %body{:style => "height: 100vh; background-color: white"}
   .container.h-100.text-black.p-15.align-items-center
     .row
-      .d-flex
+      .col-4
+      .col-4.align-self-center.p-5
         .container.align-items-center
-          %h2 New Argument
+          %h2.ml-5 New Argument
           = render 'form', argument: @argument
+      .col-4

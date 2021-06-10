@@ -10,16 +10,18 @@
     .row
       .col.d-flex.justify-content-center
         .row
-          .card.text-center.h-10
+          .card.text-center.h-10.mt-5
             .card-body
               %h5.card-title{:style => "font-size: 40px;"} #{@argument.title}
               %h6.card-subtitle.mb-2.text-muted #{@argument.user.full_name}
               %p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
-              %a.card-link{:href => edit_argument_path(@argument)} Edit
+              - if policy(@argument).edit?
+                %a.card-link{:href => edit_argument_path(@argument)} Edit
               %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Add Pro
               %a.card-link.mr-2{:href => new_argument_path(reply: @argument.id, reply_type: :con)} Add Con
               / %a.card-link{:href => @argument, method: :delete, data: { confirm: 'Are you sure?' }} Destroy
-              = link_to ' Destroy', @argument, method: :delete, data: { confirm: 'Are you sure?' }
+              - if policy(@argument).destroy?
+                = link_to ' Destroy', @argument, method: :delete, data: { confirm: 'Are you sure?' }
             / %h2{:style => "font-size: 50px"}
             /   #{@argument.title}
     .row
@@ -35,7 +37,8 @@
               %a.card-title{:href => "/arguments/#{argument.id}"}#{argument.title} 
               %h6.card-subtitle.mb-2.text-muted #{@argument.user.full_name}
               %p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
-              %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Delete
+              - if policy(argument).destroy?
+                %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Delete
       .col
         .alert.alert-danger.mt-5{:role => "alert"}Cons
         - @argument.arguments.con.each do |argument|
@@ -44,7 +47,8 @@
               %a.card-title{:href => "/arguments/#{argument.id}"}#{argument.title} 
               %h6.card-subtitle.mb-2.text-muted #{@argument.user.full_name}
               %p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
-              %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Delete
+              - if policy(argument).destroy?
+                %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Delete
       
 =render 'nav'
 
