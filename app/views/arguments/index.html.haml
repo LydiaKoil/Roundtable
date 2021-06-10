@@ -1,25 +1,3 @@
-/ %h1 Arguments
-/ %table
-/   %thead
-/     %tr
-/       %th Title
-/       %th User
-/       %th{:colspan => "3"}
-/   %tbody
-/     - @arguments.each do |argument|
-/       %tr
-/         %td= link_to argument.title, argument
-/         %td= argument.user.full_name
-/         - if policy(argument).edit?
-/           %td= link_to 'Edit', edit_argument_path(argument)
-/         - if policy(argument).destroy?
-/           %td= link_to 'Destroy', argument, method: :delete, data: { confirm: 'Are you sure?' }
-/ %br/
-/ = link_to 'New Argument', new_argument_path
-
-
-
-
 %html
   %head
     %title Arguments index

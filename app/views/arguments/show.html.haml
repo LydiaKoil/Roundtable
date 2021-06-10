@@ -1,38 +1,3 @@
-%p
-  %strong Title:
-  = @argument.title
-%p
-  %strong Body:
-  = @argument.body
-%p
-  %strong User:
-  = @argument.user.full_name
-%p
-  %strong Pros:
-%ul
-  - @argument.arguments.pro.each do |argument|
-    %li= link_to argument.title, argument
-%p
-  %strong Cons:
-%ul
-  - @argument.arguments.con.each do |argument|
-    %li= link_to argument.title, argument
-
-
-
-= link_to 'Add Pro', new_argument_path(reply: @argument.id, reply_type: :pro)
-|
-= link_to 'Add Con', new_argument_path(reply: @argument.id, reply_type: :con)
-|
-- if policy(@argument).edit?
-  %td= link_to 'Edit', edit_argument_path(@argument)
-  |
-= link_to 'Back', arguments_path
-
-=render 'nav'
-
-
-
 %html
   %head
     %title Arguments index
@@ -81,6 +46,6 @@
               %p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
               %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Delete
       
-
+=render 'nav'
 
 
