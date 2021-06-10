@@ -17,8 +17,8 @@ class ArgumentsController < ApplicationController
   # GET /arguments/new
   def new
   	authorize Argument
-    @argument = Argument.new(
-      argument_id: params[:reply],
+    @argument = Argument.new( 
+      argument_id: params[:reply], 
       reply_type: params[:reply_type]
     )
   end
@@ -32,30 +32,21 @@ class ArgumentsController < ApplicationController
   def create
   	authorize Argument
     @argument = current_user.arguments.new(argument_params)
-    respond_to do |format|
-      if @argument.save
-        @argument.send_reply_notification!
-        format.html { redirect_to @argument, notice: 'Argument was successfully created.' }
-        format.json { render :show, status: :created, location: @argument }
-        
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @argument.errors, status: :unprocessable_entity }
-      end
+    if @argument.save
+      @argument.send_reply_notification!
+      redirect_to @argument, notice: 'Argument was successfully created.'        
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /arguments/1 or /arguments/1.json
   def update
     authorize @argument
-    respond_to do |format|
-      if @argument.update(argument_params)
-        format.html { redirect_to @argument, notice: 'Argument was successfully updated.' }
-        format.json { render :show, status: :ok, location: @argument }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @argument.errors, status: :unprocessable_entity }
-      end
+    if @argument.update(argument_params)
+      redirect_to @argument, notice: 'Argument was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -63,10 +54,7 @@ class ArgumentsController < ApplicationController
   def destroy
     authorize @argument
     @argument.destroy
-    respond_to do |format|
-      format.html { redirect_to arguments_url, notice: 'Argument was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to arguments_url, notice: 'Argument was successfully destroyed.'
   end
 
   private
