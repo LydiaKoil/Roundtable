@@ -46,13 +46,19 @@ jobs:
       run: |
         sudo apt-get -yqq install libpq-dev
         
-    - name: Run Tests
+    - name: Connect to PostgreSQL
+        # Runs a script that creates a PostgreSQL table, populates
+        # the table with data, and then retrieves the data.
+      run: node client.js
+        # Environment variables used by the `client.js` script to create a new PostgreSQL table.
       env:
-        PG_DATABASE: my_database_test
-        PG_HOST: localhost
-        RAILS_ENV: test
-        WITH_COVERAGE: true
-        DISABLE_SPRING: 1
+          # The hostname used to communicate with the PostgreSQL service container
+          POSTGRES_HOST: postgres
+          # The default PostgreSQL port
+          POSTGRES_PORT: 5432
+        
+    - name: Run Tests
+ 
       run: |
         bundle exec rails db:prepare
         bundle exec rake test
