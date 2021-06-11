@@ -47,10 +47,10 @@ jobs:
       with:
         access_token: ${{ github.token }}
     - uses: actions/checkout@v2
-    - name: Set up Ruby 2.7
+    - name: Set up Ruby 
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7.2
+        ruby-version: 3.0.1
     # required to compile pg ruby gem
     - name: Install PostgreSQL client
       run: sudo apt-get install libpq-dev
