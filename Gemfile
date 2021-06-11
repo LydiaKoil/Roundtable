@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0'
+ruby '3.0.1'
 #friendlyid for urls
 gem 'friendly_id', '~> 5.4.0'
 #Sidekiq for doing async job
