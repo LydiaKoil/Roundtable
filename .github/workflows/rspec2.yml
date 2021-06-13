@@ -57,15 +57,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.0.1
-      
-
-    - name: Install yarn
-      run: |
-        wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-        echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
-        apt-get update -yq
-        apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -y yarn
-        yarn install
+    
       
     # required to compile pg ruby gem
     - name: Install PostgreSQL client
