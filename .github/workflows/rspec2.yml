@@ -52,11 +52,13 @@ jobs:
       with:
         ruby-version: 3.0.1
         
-    - name: Install node and dependencies
-      run: |
-        curl -sL https://deb.nodesource.com/setup_12.x | bash -
-        apt-get update -yq
-        apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -y apt-transport-https build-essential cmake nodejs software-properties-common unzip
+    - name: Set up node
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        check-latest: true
+    - run: npm install
 
     - name: Install yarn
       run: |
