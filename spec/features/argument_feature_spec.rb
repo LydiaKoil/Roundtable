@@ -42,7 +42,7 @@ describe 'An Argument', type: :feature  do
     end
     
     it "shows argument title" do  
-      expect(current_path).to eq("/arguments/#{@argument.id}")
+      expect(current_path).to eq("/arguments/#{@argument.slug}")
       expect(page).to have_content @argument.title
     end
 
@@ -103,7 +103,7 @@ describe 'An Argument', type: :feature  do
       end
 	    it "creates a new argument" do
         expect{click_button 'Create Argument'}.to change(Argument, :count).by(1)   
-		    expect(current_path).to eq("/arguments/#{Argument.last.id}")
+		    expect(current_path).to eq("/arguments/#{Argument.last.slug}")
 	    end
 		end
 
@@ -211,8 +211,9 @@ describe 'An Argument', type: :feature  do
       end
 
       it "deletes argument" do
+        accept_confirm("Are you sure?")  
         expect(page).to have_content ("Argument was successfully destroyed")
-
+ 
       end
     end
     
