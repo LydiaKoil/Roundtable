@@ -2,13 +2,25 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.1'
+#friendlyid for urls
+gem 'friendly_id', '~> 5.4.0'
+#Sidekiq for doing async job
 gem 'sidekiq'
+#Pundit for authorization
 gem 'pundit'
+#haml
 gem 'haml'
 gem 'haml-rails'
+#Devise for authentication and integration with admin panel
 gem 'devise'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
+#Active admin for admin panel
+gem 'activeadmin'
+#Integrations for active admin
+gem 'cancancan'
+gem 'draper'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main' 
+
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 # Use sqlite3 as the database for Active Record
 gem 'pg' 
