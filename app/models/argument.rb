@@ -1,9 +1,11 @@
 class Argument < ApplicationRecord
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 
   #----- ENUMS -----#
   enum reply_type: {pro: 0, con: 1}
+
 
   #----- Associations -----#
   has_many :arguments, dependent: :destroy
@@ -19,4 +21,5 @@ class Argument < ApplicationRecord
     original = Argument.find(self.argument_id)
     UserMailer.reply_email(original.user.id).deliver_later
   end
+
 end
