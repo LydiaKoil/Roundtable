@@ -13,12 +13,14 @@ gem 'haml'
 gem 'haml-rails'
 #Devise for authentication and integration with admin panel
 gem 'devise'
+
 #Active admin for admin panel
 gem 'activeadmin'
 #Integrations for active admin
 gem 'cancancan'
 gem 'draper'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main' 
+
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 # Use sqlite3 as the database for Active Record
 gem 'pg' 
