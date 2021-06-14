@@ -36,7 +36,7 @@
             .card-body
               %h5.mb-1
                 %strong
-                  %a.text-dark.card-title{:href => "/arguments/#{argument.id}"}#{argument.title} 
+                  %a.text-dark.card-title{:href => "/arguments/#{argument.slug}"}#{argument.title} 
               %p.card-subtitle.mb-3.text-muted #{@argument.user.full_name}
               %p.card-text.mb-1 #{argument.body}
               - if policy(argument).destroy?
@@ -53,7 +53,7 @@
             .card-body
               %h5.mb-1
                 %strong
-                  %a.text-dark.card-title{:href => "/arguments/#{argument.id}"}#{argument.title} 
+                  %a.text-dark.card-title{:href => "/arguments/#{argument.slug}"}#{argument.title} 
               %p.card-subtitle.mb-3.text-muted #{@argument.user.full_name}
               %p.card-text.mb-1 #{argument.body}
               - if policy(argument).destroy?

@@ -24,7 +24,7 @@
                 .d-flex.w-100.mb-3
                 %h4
                   %strong
-                    %a.text-dark{href: "/arguments/#{argument.id}"} #{argument.title}
+                    %a.text-dark{href: "/arguments/#{argument.slug}"} #{argument.title}
                 %small #{argument.user.full_name}
                 %p.mb-2 id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
                 - if policy(argument).edit?
