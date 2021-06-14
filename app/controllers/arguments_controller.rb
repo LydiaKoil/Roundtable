@@ -34,11 +34,7 @@ class ArgumentsController < ApplicationController
     @argument = current_user.arguments.new(argument_params)
     if @argument.save
       @argument.send_reply_notification!
-      if @argument.argument_id == nil
-        redirect_to arguments_path, notice: 'Argument was successfully created.'
-      else
-        redirect_to Argument.find(@argument.argument_id), notice: 'Argument was successfully created.'
-      end     
+      redirect_to @argument, notice: 'Argument was successfully created.'        
     else
       render :new, status: :unprocessable_entity
     end

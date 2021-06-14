@@ -1,18 +1,9 @@
-%nav.navbar.navbar-light.bg-light.py-3.mb-3
-  .container.p-15
-    %span.navbar-text{:style => "font-size: 20px; color: Black"}
-      %strong THE ROUND TABLE
+%p 
 
-    - if current_user
-
-      %span.navbar-text.ml-auto.p-2
-      / #{current_user.first_name}
-      %p
-      / = link_to 'Sign out', destroy_user_session_path, method: :delete
-
-      %a.btn.btn-outline-dark.my-2.amy-lg-0{href: arguments_path} Sign Out
-
-      %p
-    - else 
-      %a.btn.btn-outline-dark.my-2.amy-lg-0{href: arguments_path} Sign In
-  	
+- if current_user
+  
+  = "#{current_user.first_name}"
+  %p
+  = link_to 'Sign out', destroy_user_session_path, method: :delete
+  %p
+%p

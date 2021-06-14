@@ -1,84 +1,17 @@
-/ %h2 Log in
-/ = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-/   .field
-/     = f.label :email
-/     %br/
-/     = f.email_field :email, autofocus: true, autocomplete: "email",id: "Email"
-/   .field
-/     = f.label :password
-/     %br/
-/     = f.password_field :password, autocomplete: "current-password"
-/   - if devise_mapping.rememberable?
-/     .field
-/       = f.check_box :remember_me
-/       = f.label :remember_me
-/   .actions
-/     = f.submit "Log in"
-/ = render "devise/shared/links"
-
-/ !!!
-/ %html{lang: "en"}
-/   %head
-/     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-/     %meta{charset: "utf-8"}/
-/     %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
-/     %meta{content: "", name: "description"}/
-/     %meta{content: "", name: "author"}/
-/     %link{href: "../../../../favicon.ico", rel: "icon"}/
-/     %title Signin Template for Bootstrap
-/     / / Bootstrap core CSS
-/     / %link{href: "../../../../dist/css/bootstrap.min.css", rel: "stylesheet"}/
-/     / Custom styles for this template
-/     / <%= stylesheet_link_tag "main", "signin" %>
-/   %body.text-center
-/     %form.form-signin
-/       %img.mb-4{alt: "", height: "72", src: "https://getbootstrap.com/assets/brand/bootstrap-solid.svg", width: "72"}/
-/       %h1.h3.mb-3.font-weight-normal Log in
-/       %label.sr-only{for: "inputEmail"} Email address
-/       %input#inputEmail.form-control{autofocus: true, placeholder: "Email address", required: "", type: "email"}/
-/       %label.sr-only{for: "inputPassword"} Password
-/       %input#inputPassword.form-control{placeholder: "Password", required: "", type: "password"}/
-/       .checkbox.mb-3
-/         %label
-/           %input{type: "checkbox", value: "remember-me"}/
-/           Remember me
-/       %button.btn.btn-lg.btn-primary.btn-block{type: "submit"} Sign in
-/       %p.mt-5.mb-3.text-muted 
-
-/ = render "devise/shared/links"
-
-
-
-
-%html
-  %head
-    %title Log in
-    %link{:href => "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
-    %link{:href => "https://fonts.googleapis.com/css?family=Inter", :rel => "stylesheet"}/
-    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", :rel => "stylesheet"}/   
-
-%body{:style => "height: 100vh; background-color: white;"}
-  .container-fluid.h-100.text-black
-    .row.h-100.no-gutter
-      .col-4
-      .col-4.align-self-center
-        %h2 Log in
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          .field
-            = f.label :email
-            %br/
-            = f.email_field :email, autofocus: true, autocomplete: "email",id: "Email"
-          .field
-            = f.label :password
-            %br/
-            = f.password_field :password, autocomplete: "current-password"
-          - if devise_mapping.rememberable?
-            .field
-              = f.check_box :remember_me
-              = f.label :remember_me
-          .actions
-            = f.submit "Log in"
-        .col-4
-        = render "devise/shared/links"
-      
-        
+%h2 Log in
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email",id: "Email"
+  .field
+    = f.label :password
+    %br/
+    = f.password_field :password, autocomplete: "current-password"
+  - if devise_mapping.rememberable?
+    .field
+      = f.check_box :remember_me
+      = f.label :remember_me
+  .actions
+    = f.submit "Log in"
+= render "devise/shared/links"
