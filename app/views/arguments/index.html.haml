@@ -8,7 +8,7 @@
 
 %body{:style => "height: 100vh; background-color: white;"}
   =render 'nav'
-  .container.h-100.text-black.p-15
+  .container.h-100.text-black.p-15.mt-3
 
     .row.h-100
       .col-9
@@ -29,7 +29,13 @@
                   %a.mr-2.badge.badge-pill.badge-primary{href: edit_argument_path(argument)}Edit 
                 - if policy(argument).destroy?
                   / %span.badge.badge-pill.badge-info.navbar-text{:style => "color: White"}
-                  = link_to 'Destroy', argument, method: :delete, data: { confirm: 'Are you sure?' }
-      .col-3{:style => "background-color: white"}
+                  / %a.mr-2.badge.badge-pill.badge-primary{href: destroy_argument_path}Delete
+                  / = link_to 'Destroy', argument, method: :delete, data: { confirm: 'Are you sure?' }
+      .col-3{:style => "background-color: white;"}
+        .row
+          .container{:style => " background-color: pink;"}
+            %strong 
+        
+
 
  
