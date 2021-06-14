@@ -42,8 +42,7 @@
         .row.h-50
           .container
             - if current_user
-              = link_to 'Sign out', destroy_user_session_path, method: :delete
-              %a.btn.btn-dark.float-right.my-2{href: destroy_user_session_path, method: :delete}Sign out 
+              %a.btn.btn-dark.float-right.my-2{href: destroy_user_session_path}Sign out 
             - else
               %a.btn.btn-dark.float-right.my-2{href: new_user_session_path} Sign in 
               %a.btn.btn-dark.float-right.my-2.mr-2{href: new_user_registration_path} Sign up
