@@ -3,31 +3,31 @@
     %title Arguments index
     %link{:href => "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "https://fonts.googleapis.com/css?family=Inter", :rel => "stylesheet"}/
-    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", :rel => "stylesheet"}/   
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", :rel => "stylesheet"}/ 
+
 
 %body{:style => "height: 100vh; background-color: white"}
         
   =render 'nav'
   .container.h-100.text-black.p-15
-    .row
-      .col.d-flex.justify-content-center
-        .row
-          .card.text-center.border-warning.h-10.mt-5
-            .card-body
-              %h5.card-title{:style => "font-size: 40px;"} #{@argument.title}
-              %h6.card-subtitle.mb-2.text-muted #{@argument.user.full_name}
-              %p.card-text #{@argument.body}
-              - if policy(@argument).edit?
-                %a.card-link{:href => edit_argument_path(@argument)} Edit
-              %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Add Pro
-              %a.card-link.mr-2{:href => new_argument_path(reply: @argument.id, reply_type: :con)} Add Con
-              / %a.card-link{:href => @argument, method: :delete, data: { confirm: 'Are you sure?' }} Destroy
-              - if policy(@argument).destroy?
-                = link_to ' Destroy', @argument, method: :delete, data: { confirm: 'Are you sure?' }
+    .row 
+      .container
+        .card.text-center.h-10.mt-5{:style => "background-color: black;"} 
+          .card-body
+            %h5.card-title.text-white{:style => "font-size: 40px;"} #{@argument.title}
+            %h6.card-subtitle.mb-2.text-white #{@argument.user.full_name}
+            %p.card-text #{@argument.body}
+            - if policy(@argument).edit?
+              %a.card-link{:href => edit_argument_path(@argument)} Edit
+            %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Add Pro
+            %a.card-link.mr-2{:href => new_argument_path(reply: @argument.id, reply_type: :con)} Add Con
+            / %a.card-link{:href => @argument, method: :delete, data: { confirm: 'Are you sure?' }} Destroy
+            - if policy(@argument).destroy?
+              = link_to ' Delete', @argument, method: :delete, data: { confirm: 'Are you sure?' }
 
     .row
       .col
-        .card.text-center.h-10.bg-primary.mt-5.mb-2
+        .card.text-center.h-10.mt-5.mb-2{:style => "background-color: #73b4ff;"}
           .card-body.text-white
             %h5.card-title{:style => "font-size: 20px;"}Pros
 
@@ -45,9 +45,9 @@
               - if policy(argument).edit?
                 %a.mr-2.badge.badge-pill.badge-light{href: edit_argument_path(argument)}Edit 
       .col
-        .card.text-center.h-10.bg-dark.mt-5.mb-2
+        .card.text-center.h-10.mt-5.mb-2{:style => "background-color: #ff869a;"}
           .card-body.text-white
-            %h5.card-title{:style => "font-size: 20px;"}Cons
+            %h5.card-title{:style => "font-size: 20px; "}Cons
         - @argument.arguments.con.each do |argument|
           .card.text-left.h-10
             .card-body
@@ -61,5 +61,9 @@
                 / = link_to ' Destroy', @argument, method: :delete, data: { confirm: 'Are you sure?' }
               - if policy(argument).edit?
                 %a.mr-2.badge.badge-pill.badge-light{href: edit_argument_path(argument)}Edit 
+          
+
+
+
 
 
