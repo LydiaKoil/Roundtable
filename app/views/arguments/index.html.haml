@@ -1,4 +1,4 @@
-   
+
 %html
   %head
     %title Arguments index
@@ -16,7 +16,7 @@
           .container
             %a.btn.btn-primary.w-5{href: new_argument_path} New Argument
         .row 
-          .list-group.list-group-flush.p-15.mt-2          
+          .list-group.list-group-flush.p-15.mt-2.w-100          
             - @arguments.each do |argument|
               .list-group-item.list-group-item-action.flex-column.align-items-start
                 .d-flex.w-100.mb-3
@@ -24,7 +24,7 @@
                   %strong
                     %a.text-dark{href: "/arguments/#{argument.slug}"} #{argument.title}
                 %small #{argument.user.full_name}
-                %p.mb-2 id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+                %p.mb-2 #{argument.body.truncate(50)}
                 - if policy(argument).edit?
                   %a.mr-2.badge.badge-pill.badge-primary{href: edit_argument_path(argument)}Edit 
                 - if policy(argument).destroy?

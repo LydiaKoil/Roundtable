@@ -54,28 +54,28 @@
   %head
     %title Log in
     %link{:href => "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
-    %link{:href => "https://fonts.googleapis.com/css?family=Inter", :rel => "stylesheet"}/
-    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", :rel => "stylesheet"}/   
+
+
 
 %body{:style => "height: 100vh; background-color: white;"}
+
+  %nav.navbar.navbar-light.bg-light.py-3
+  .container.p-15
+    %span.navbar-text{:style => "font-size: 20px; color: Black"}
+      %strong THE ROUND TABLE
   .container-fluid.h-100.text-black
     .row.h-100.no-gutter
       .col-4
       .col-4.align-self-center
         %h2 Log in
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           .field
-            = f.label :email
-            %br/
             = f.email_field :email, autofocus: true, autocomplete: "email",id: "Email"
           .field
-            = f.label :password
-            %br/
             = f.password_field :password, autocomplete: "current-password"
           - if devise_mapping.rememberable?
             .field
               = f.check_box :remember_me
-              = f.label :remember_me
           .actions
             = f.submit "Log in"
         .col-4

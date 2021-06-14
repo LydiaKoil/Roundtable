@@ -12,11 +12,11 @@
   .container.h-100.text-black.p-15
     .row 
       .container
-        .card.text-center.h-10.mt-5{:style => "background-color: black;"} 
+        .card.text-center.h-10.mt-5{:style => "background-color: #033F63;"} 
           .card-body
-            %h5.card-title.text-white{:style => "font-size: 40px;"} #{@argument.title}
-            %h6.card-subtitle.mb-2.text-white #{@argument.user.full_name}
-            %p.card-text #{@argument.body}
+            %h5.card-title.text-white.mb-0{:style => "font-size: 40px;"} #{@argument.title}
+            %h7.card-subtitle.mb-2.text-white.mb-2 #{@argument.user.full_name}
+            %p.text-white.card-text #{@argument.body}
             - if policy(@argument).edit?
               %a.card-link{:href => edit_argument_path(@argument)} Edit
             %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Add Pro
@@ -27,7 +27,7 @@
 
     .row
       .col
-        .card.text-center.h-10.mt-5.mb-2{:style => "background-color: #73b4ff;"}
+        .card.text-center.h-10.mt-5.mb-2{:style => "background-color: #79B791"}
           .card-body.text-white
             %h5.card-title{:style => "font-size: 20px;"}Pros
 
@@ -45,7 +45,7 @@
               - if policy(argument).edit?
                 %a.mr-2.badge.badge-pill.badge-light{href: edit_argument_path(argument)}Edit 
       .col
-        .card.text-center.h-10.mt-5.mb-2{:style => "background-color: #ff869a;"}
+        .card.text-center.h-10.mt-5.mb-2{:style => "background-color:#C3423F"}
           .card-body.text-white
             %h5.card-title{:style => "font-size: 20px; "}Cons
         - @argument.arguments.con.each do |argument|
