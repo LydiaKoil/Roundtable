@@ -1,3 +1,4 @@
+   
 %html
   %head
     %title Arguments index
@@ -6,31 +7,31 @@
     %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", :rel => "stylesheet"}/   
 
 %body{:style => "height: 100vh; background-color: white;"}
+  =render 'nav'
   .container.h-100.text-black.p-15
+
     .row.h-100
       .col-9
         .row
           .container
-            %h2.mt-2{:style => "font-size: 50px"}
+            %h2.mt-2.mb-2{:style => "font-size: 50px"}
               Discussions
             %a.btn.btn-outline-dark.w-5{href: new_argument_path} New Argument
 
 
         .row 
-
-
           .list-group.list-group-flush.p-15.mt-2          
             - @arguments.each do |argument|
               .list-group-item.list-group-item-action.flex-column.align-items-start
-                .d-flex.w-100
+                .d-flex.w-100.mb-3
                 %h5
                   %a{href: "/arguments/#{argument.id}"} #{argument.title}
                 %small #{argument.user.full_name}
                 %p.mb-2 id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
                 - if policy(argument).edit?
-                  %a{href: edit_argument_path(argument)}Edit 
+                  %a.mr-2{href: edit_argument_path(argument)}Edit 
                 - if policy(argument).edit?
                   = link_to 'Destroy', argument, method: :delete, data: { confirm: 'Are you sure?' }
       .col-3{:style => "background-color: white"}
 
-=render 'nav'    
+ 

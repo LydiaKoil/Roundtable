@@ -6,6 +6,8 @@
     %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", :rel => "stylesheet"}/   
 
 %body{:style => "height: 100vh; background-color: white"}
+        
+  =render 'nav'
   .container.h-100.text-black.p-15
     .row
       .col.d-flex.justify-content-center
@@ -14,7 +16,7 @@
             .card-body
               %h5.card-title{:style => "font-size: 40px;"} #{@argument.title}
               %h6.card-subtitle.mb-2.text-muted #{@argument.user.full_name}
-              %p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+              %p.card-text #{@argument.body}
               - if policy(@argument).edit?
                 %a.card-link{:href => edit_argument_path(@argument)} Edit
               %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Add Pro
@@ -36,7 +38,7 @@
             .card-body
               %a.card-title{:href => "/arguments/#{argument.id}"}#{argument.title} 
               %h6.card-subtitle.mb-2.text-muted #{@argument.user.full_name}
-              %p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+              %p.card-text #{argument.body}
               - if policy(argument).destroy?
                 %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Delete
       .col
@@ -46,10 +48,9 @@
             .card-body
               %a.card-title{:href => "/arguments/#{argument.id}"}#{argument.title} 
               %h6.card-subtitle.mb-2.text-muted #{@argument.user.full_name}
-              %p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+              %p.card-text #{argument.body}
               - if policy(argument).destroy?
                 %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Delete
-      
-=render 'nav'
+
 
 
