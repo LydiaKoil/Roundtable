@@ -14,9 +14,7 @@
       .col-9
         .row
           .container
-            %h2.mt-2.mb-2{:style => "font-size: 50px"}
-              Discussions
-            %a.btn.btn-outline-dark.w-5{href: new_argument_path} New Argument
+            %a.btn.btn-primary.w-5{href: new_argument_path} New Argument
 
 
         .row 
@@ -24,14 +22,16 @@
             - @arguments.each do |argument|
               .list-group-item.list-group-item-action.flex-column.align-items-start
                 .d-flex.w-100.mb-3
-                %h5
-                  %a{href: "/arguments/#{argument.id}"} #{argument.title}
+                %h4
+                  %strong
+                    %a.text-dark{href: "/arguments/#{argument.id}"} #{argument.title}
                 %small #{argument.user.full_name}
                 %p.mb-2 id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
                 - if policy(argument).edit?
-                  %a.mr-2{href: edit_argument_path(argument)}Edit 
-                - if policy(argument).edit?
-                  = link_to 'Destroy', argument, method: :delete, data: { confirm: 'Are you sure?' }
+                  %a.mr-2.badge.badge-pill.badge-primary{href: edit_argument_path(argument)}Edit 
+                - if policy(argument).destroy?
+                  / %span.badge.badge-pill.badge-info.navbar-text{:style => "color: White"}
+                  /   = link_to 'Destroy', argument, method: :delete, data: { confirm: 'Are you sure?' }
       .col-3{:style => "background-color: white"}
 
  

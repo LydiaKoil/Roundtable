@@ -12,7 +12,7 @@
     .row
       .col.d-flex.justify-content-center
         .row
-          .card.text-center.h-10.mt-5
+          .card.text-center.border-warning.h-10.mt-5
             .card-body
               %h5.card-title{:style => "font-size: 40px;"} #{@argument.title}
               %h6.card-subtitle.mb-2.text-muted #{@argument.user.full_name}
@@ -24,33 +24,42 @@
               / %a.card-link{:href => @argument, method: :delete, data: { confirm: 'Are you sure?' }} Destroy
               - if policy(@argument).destroy?
                 = link_to ' Destroy', @argument, method: :delete, data: { confirm: 'Are you sure?' }
-            / %h2{:style => "font-size: 50px"}
-            /   #{@argument.title}
+
     .row
       .col
+        .card.text-center.h-10.bg-primary.mt-5.mb-2
+          .card-body.text-white
+            %h5.card-title{:style => "font-size: 20px;"}Pros
 
-        / .card.text-center.h-10.border-success.mt-5
-        /   .card-body.text-success
-        /     %h5.card-title{:style => "font-size: 20px;"}Pros
-        .alert.alert-success.mt-5{:role => "alert"}Pros
         - @argument.arguments.pro.each do |argument|
           .card.text-left.h-10
             .card-body
-              %a.card-title{:href => "/arguments/#{argument.id}"}#{argument.title} 
-              %h6.card-subtitle.mb-2.text-muted #{@argument.user.full_name}
-              %p.card-text #{argument.body}
+              %h5.mb-1
+                %strong
+                  %a.text-dark.card-title{:href => "/arguments/#{argument.id}"}#{argument.title} 
+              %p.card-subtitle.mb-3.text-muted #{@argument.user.full_name}
+              %p.card-text.mb-1 #{argument.body}
               - if policy(argument).destroy?
-                %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Delete
+                / %a.card-link{:href => @argument, method: :delete, data: { confirm: 'Are you sure?' }} Delete
+                / = link_to ' Destroy', @argument, method: :delete, data: { confirm: 'Are you sure?' }
+              - if policy(argument).edit?
+                %a.mr-2.badge.badge-pill.badge-light{href: edit_argument_path(argument)}Edit 
       .col
-        .alert.alert-danger.mt-5{:role => "alert"}Cons
+        .card.text-center.h-10.bg-dark.mt-5.mb-2
+          .card-body.text-white
+            %h5.card-title{:style => "font-size: 20px;"}Cons
         - @argument.arguments.con.each do |argument|
           .card.text-left.h-10
             .card-body
-              %a.card-title{:href => "/arguments/#{argument.id}"}#{argument.title} 
-              %h6.card-subtitle.mb-2.text-muted #{@argument.user.full_name}
-              %p.card-text #{argument.body}
+              %h5.mb-1
+                %strong
+                  %a.text-dark.card-title{:href => "/arguments/#{argument.id}"}#{argument.title} 
+              %p.card-subtitle.mb-3.text-muted #{@argument.user.full_name}
+              %p.card-text.mb-1 #{argument.body}
               - if policy(argument).destroy?
-                %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Delete
-
+                / %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Delete
+                / = link_to ' Destroy', @argument, method: :delete, data: { confirm: 'Are you sure?' }
+              - if policy(argument).edit?
+                %a.mr-2.badge.badge-pill.badge-light{href: edit_argument_path(argument)}Edit 
 
 
