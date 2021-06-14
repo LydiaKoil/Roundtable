@@ -35,39 +35,32 @@
   %head
     %title Sign up
     %link{:href => "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
-    %link{:href => "https://fonts.googleapis.com/css?family=Inter", :rel => "stylesheet"}/
-    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", :rel => "stylesheet"}/   
 
+%nav.navbar.navbar-light.bg-light.py-3
+  .container.p-15
+    %span.navbar-text{:style => "font-size: 20px; color: Black"}
+      %strong THE ROUND TABLE
 %body{:style => "height: 100vh; background-color: white;"}
   .container-fluid.h-100.text-black
     .row.h-100.no-gutter
       .col-4
       .col-4.align-self-center
         / %h2 Sign up
-        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           = render "devise/shared/error_messages", resource: resource
           .field
-            = f.label :first_name
-            %br/
             = f.text_field :first_name, autofocus: true
           .field
-            = f.label :last_name
-            %br/
             = f.text_field :last_name
           .field
-            = f.label :email
-            %br/
             = f.email_field :email, autofocus: true, autocomplete: "email"
           .field
-            = f.label :password
             - if @minimum_password_length
               %em
                 (#{@minimum_password_length} characters minimum)
             %br/
             = f.password_field :password, autocomplete: "new-password"
           .field
-            = f.label :password_confirmation
-            %br/
             = f.password_field :password_confirmation, autocomplete: "new-password"
           .actions
             = f.submit "Sign up"

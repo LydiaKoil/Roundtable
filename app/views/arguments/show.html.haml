@@ -12,11 +12,11 @@
   .container.h-100.text-black.p-15
     .row 
       .container
-        .card.text-center.h-10.mt-5{:style => "background-color: black;"} 
+        .card.text-center.h-10.mt-5{:style => "background-color: white;"} 
           .card-body
-            %h5.card-title.text-white{:style => "font-size: 40px;"} #{@argument.title}
-            %h6.card-subtitle.mb-2.text-white #{@argument.user.full_name}
-            %p.card-text #{@argument.body}
+            %h5.card-title.text-black{:style => "font-size: 40px;"} #{@argument.title}
+            %h7.card-subtitle.mb-2.text-mute #{@argument.user.full_name}
+            %p.text-black.card-text #{@argument.body}
             - if policy(@argument).edit?
               %a.card-link{:href => edit_argument_path(@argument)} Edit
             %a.card-link{:href => new_argument_path(reply: @argument.id, reply_type: :pro)} Add Pro
