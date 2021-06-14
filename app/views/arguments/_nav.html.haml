@@ -10,7 +10,10 @@
       %p
       / = link_to 'Sign out', destroy_user_session_path, method: :delete
 
+      %a.btn.btn-outline-dark.my-2.amy-lg-0.mx-2{href: arguments_path} Arguments
+
       %a.btn.btn-outline-dark.my-2.amy-lg-0{href: arguments_path} Sign Out
+
 
       %p
     - else 
