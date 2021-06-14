@@ -1,8 +1,58 @@
-%h1 The Round Table
-- if current_user
-  = link_to 'Sign out', destroy_user_session_path, method: :delete
-  = link_to 'New Argument', new_argument_path
-- else
-  = link_to 'Sign in', new_user_session_path
-  = link_to 'Sign up', new_user_registration_path
-= link_to 'Arguments', arguments_path
+/ #navbarToggleExternalContent.collapse
+/   .bg-dark.p-4
+/     %h5.text-white.h4 Collapsed content
+/     %span.text-muted Toggleable via the navbar brand.
+/ %nav.navbar.navbar-dark.bg-dark
+/   .container-fluid
+/     %button.navbar-toggler{"aria-controls" => "navbarToggleExternalContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarToggleExternalContent", "data-bs-toggle" => "collapse", type: "button"}
+/       %span.navbar-toggler-icon
+/ %main
+/   %section.py-5.text-center.container
+/     .row.py-lg-5
+/       .col-lg-6.col-md-8.mx-auto
+/         %h1 The Round Table
+/         - if current_user
+/           = link_to 'Sign out', destroy_user_session_path, method: :delete
+/           = link_to 'New Argument', new_argument_path
+/         - else
+/           %a.btn.btn-primary.my-2{href: new_user_session_path} Sign in 
+/           %a.btn.btn-primary.my-2{href: new_user_registration_path} Sign up
+/         %a.btn.btn-primary.my-2{href: arguments_path} Arguments 
+
+%html
+  %head
+    %title Home Page
+    %link{:href => "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Inter", :rel => "stylesheet"}/
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", :rel => "stylesheet"}/   
+
+%body{:style => "height: 100vh; background-color: white;"}
+  .container-fluid.h-100.text-black
+    .row.h-100.no-gutter
+      .col-6.align-self-center.p-5
+        .d-flex.align-items-center
+          .container
+            %h5.animate__animated.animate__fadeInUp
+              Challenge your perceptions.
+            %h5.animate__animated.animate__fadeInUp
+              Grab a seat.
+            %a.btn.btn-dark.my-2{href: arguments_path} Arguments 
+              
+      .col-6{:style => "background-color: black"}
+        .row.h-50
+          .container
+            - if current_user
+              = link_to 'Sign out', destroy_user_session_path, method: :delete
+              %a.btn.btn-dark.float-right.my-2{href: destroy_user_session_path, method: :delete}Sign out 
+            - else
+              %a.btn.btn-dark.float-right.my-2{href: new_user_session_path} Sign in 
+              %a.btn.btn-dark.float-right.my-2.mr-2{href: new_user_registration_path} Sign up
+       
+        .row.h-50.align-self-center.justify-content-center
+          .container.align-items-center            
+            %h5.animate__animated.animate__fadeIn
+              .d-flex.justify-content-center.text-center{:style => "font-size: 50px; color: white"} THE ROUND TABLE
+              
+
+/ .row.h-30.no-gutter.justify-content-center
+/ %span.center{:style => "height: 200px; width: 200px; background-color: white; border-radius: 50%; display: inline-block;"} 
