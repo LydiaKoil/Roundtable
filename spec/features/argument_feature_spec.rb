@@ -67,9 +67,7 @@ describe 'An Argument', type: :feature  do
     context "when logged in" do
       before do
         sign_in
-        click_on 'Arguments'
         click_on('New Argument')
-        
       end
 
       it "displays new argument form" do   
@@ -77,7 +75,7 @@ describe 'An Argument', type: :feature  do
         expect(page).to have_selector(:link_or_button, 'Create Argument')
       end
     end
-  
+
     context "when logged out" do
       before do
         click_on('Arguments')
@@ -86,6 +84,7 @@ describe 'An Argument', type: :feature  do
 
       it "doesnt display argument form " do
         expect(page).to_not have_selector(:link_or_button, 'Create Argument')
+        expect(page).to have_content ("You need to sign in or sign up before continuing.") 
       end
     end
   end
@@ -94,7 +93,6 @@ describe 'An Argument', type: :feature  do
 	describe "create" do
     before do
       sign_in
-      click_on 'Arguments'
       click_on('New Argument')  
     end
 
@@ -105,6 +103,7 @@ describe 'An Argument', type: :feature  do
       end
 	    it "creates a new argument" do
         expect{click_button 'Create Argument'}.to change(Argument, :count).by(1)   
+		    expect(current_path).to eq("/arguments/#{Argument.last.slug}")
 	    end
 		end
 
@@ -171,15 +170,13 @@ describe 'An Argument', type: :feature  do
 
     context "when full details are provided" do
       before do
-        @old_body = @user.arguments.first.body
-        @new_body = "Something"
         fill_in 'Title', with: "Something"
-        fill_in 'Body', with: @new_body
+        fill_in 'Body', with: "Something"
         click_on('Update Argument')   
       end
 
       it "updates argument" do          
-        expect(page).to have_content (@new_body)
+        expect(page).to have_content ("Argument was successfully updated")
       end
     end
 
@@ -214,8 +211,9 @@ describe 'An Argument', type: :feature  do
       end
 
       it "deletes argument" do
-        accept_confirm("Are you sure?")
-        #requires test checking that Argument.count changed by -1 
+        accept_confirm("Are you sure?")  
+        expect(page).to have_content ("Argument was successfully destroyed")
+ 
       end
     end
     
